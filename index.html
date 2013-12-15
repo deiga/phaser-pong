@@ -20,6 +20,7 @@
           game.add.tileSprite(0,0,480,640,'background');
           playerBet = createBet(game.world.centerX, 610);
           computerBet = createBet(game.world.centerX, 20);
+          ball = createBall(game.world.centerX, game.world.centerY);
         }
         function update () {
 
@@ -32,6 +33,13 @@
           bet.body.immovable = true;
 
           return bet;
+        }
+        function createBall (x,y) {
+          var tmpBall = game.add.sprite(x,y, 'ball');
+          tmpBall.anchor.setTo(0.5,0.5);
+          tmpBall.body.collideWorldBounds = true;
+          tmpBall.body.bounce.setTo(1, 1);
+          return tmpBall;
         }
       </script>
   </head>
