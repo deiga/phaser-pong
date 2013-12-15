@@ -5,7 +5,21 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>Phaser-pong</title>
       <link rel="stylesheet" href="">
-      <script type="text/javascript" src="/bower_components/phaser/phaser.js" />
+      <script type="text/javascript" src="/bower_components/phaser/phaser.js"></script>
+      <script type="text/javascript">
+        var game = new Phaser.Game(480,640, Phaser.AUTO, '', { preload: preload, create: create, update: update});
+        function preload () {
+          game.load.image('bet', 'assets/paddle.png');
+          game.load.image('ball', 'assets/ball.png');
+          game.load.image('background', 'assets/starfield.png');
+        }
+        function create () {
+          game.add.tileSprite(0,0,480,640,'background');
+        }
+        function update () {
+
+        }
+      </script>
   </head>
   <body>
 
