@@ -1,0 +1,25 @@
+{
+  "name": "phaser-pong",
+  "version": "0.9.0",
+  "homepage": "https://github.com/deiga/phaser-pong",
+  "authors": [
+    "Timo Sand <timo.j.sand@gmail.com>"
+  ],
+  "description": "pong game with phaser.js",
+  "main": "web.js",
+  "keywords": [
+    "phaser.js"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser": "~1.1.2"
+  }
+}
