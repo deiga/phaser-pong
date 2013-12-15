@@ -12,6 +12,7 @@
         var computerBetSpeed = 190;
         var ballSpeed = 300;
         var ballReleased = false;
+        var playerBetHalfWidth;
 
         function preload () {
           game.load.image('bet', 'assets/paddle.png');
@@ -23,9 +24,13 @@
           playerBet = createBet(game.world.centerX, 610);
           computerBet = createBet(game.world.centerX, 20);
           ball = createBall(game.world.centerX, game.world.centerY);
+          playerBetHalfWidth = playerBet.width / 2;
           game.input.onDown.add(releaseBall, this);
         }
         function update () {
+          controlPlayerPaddle(game.input.x);
+          controlComputerPaddle();
+          processBallAndPaddleCollisions();
 
         }
         function createBet (x,y) {
@@ -49,6 +54,40 @@
             ball.body.velocity.x = ballSpeed;
             ball.body.velocity.y = -ballSpeed;
             ballReleased = true;
+          }
+        }
+        function controlPlayerPaddle (x) {
+          playerBet.x = x;
+
+          if (playerBet.x < playerBetHalfWidth) {
+            playerBet.x = playerBetHalfWidth;
+          } else if (playerBet.x > game.width - playerBetHalfWidth) {
+            playerBet.x = game.width - playerBetHalfWidth;
+          }
+        }
+        function controlComputerPaddle () {
+          if (computerBet.x - ball.x < -15) {
+            computerBet.body.velocity.x = computerBetSpeed;
+          } else if(computerBet.x - ball.x > 15) {
+            computerBet.body.velocity.x = -computerBetSpeed;
+          } else {
+            computerBet.body.velocity.x = 0;
+          }
+        }
+        function processBallAndPaddleCollisions () {
+          game.physics.collide(ball, playerBet, ballHitsBet, null, this);
+          game.physics.collide(ball, computerBet, ballHitsBet, null, this);
+        }
+        function ballHitsBet (_ball, _bet) {
+          var diff = 0;
+
+          if (_ball.x < _bet.x) {
+            diff = _bet.x - _ball.x;
+          } else if (_ball.x > _bet.x) {
+            diff = _ball.x - _bet.x;
+            _ball.body.velocity.x = (10*diff);
+          } else {
+            _ball.body.velocity.x = 2 + Math.random() * 8;
           }
         }
       </script>
