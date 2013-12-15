@@ -31,6 +31,7 @@
           controlPlayerPaddle(game.input.x);
           controlComputerPaddle();
           processBallAndPaddleCollisions();
+          checkGoal();
 
         }
         function createBet (x,y) {
@@ -49,8 +50,14 @@
           tmpBall.body.bounce.setTo(1, 1);
           return tmpBall;
         }
-        function releaseBall () {
-          if (!ballReleased) {
+        function setBall () {
+          if (ballReleased) {
+            ball.x = game.world.centerX;
+            ball.y = game.world.centerY;
+            ball.body.velocity.x = 0;
+            ball.body.velocity.y = 0;
+            ballReleased = false;
+          } else {
             ball.body.velocity.x = ballSpeed;
             ball.body.velocity.y = -ballSpeed;
             ballReleased = true;
@@ -88,6 +95,13 @@
             _ball.body.velocity.x = (10*diff);
           } else {
             _ball.body.velocity.x = 2 + Math.random() * 8;
+          }
+        }
+        function checkGoal () {
+          if (ball.y < 13) {
+            setBall();
+          } else if (ball.y > 629) {
+            setBall();
           }
         }
       </script>
