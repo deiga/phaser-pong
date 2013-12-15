@@ -12,3 +12,6 @@ App at http://phaser-pong.herokuapp.com
 npm install
 node web.js
 ```
+
+
+Assets from `phaser.js` examples
