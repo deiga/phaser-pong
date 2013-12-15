@@ -4,10 +4,9 @@
   "description": "pong game on phaser.js",
   "main": "index.js",
   "dependencies": {
-    "bower": "1.2.x"
+    "bower": "~1.2.8"
   },
   "scripts": {
-    // "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
