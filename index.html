@@ -11,6 +11,8 @@
         var playerBet, computerBet, ball;
         var computerBetSpeed = 190;
         var ballSpeed = 300;
+        var ballReleased = false;
+
         function preload () {
           game.load.image('bet', 'assets/paddle.png');
           game.load.image('ball', 'assets/ball.png');
@@ -21,6 +23,7 @@
           playerBet = createBet(game.world.centerX, 610);
           computerBet = createBet(game.world.centerX, 20);
           ball = createBall(game.world.centerX, game.world.centerY);
+          game.input.onDown.add(releaseBall, this);
         }
         function update () {
 
@@ -40,6 +43,13 @@
           tmpBall.body.collideWorldBounds = true;
           tmpBall.body.bounce.setTo(1, 1);
           return tmpBall;
+        }
+        function releaseBall () {
+          if (!ballReleased) {
+            ball.body.velocity.x = ballSpeed;
+            ball.body.velocity.y = -ballSpeed;
+            ballReleased = true;
+          }
         }
       </script>
   </head>
