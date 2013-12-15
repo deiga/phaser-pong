@@ -21,11 +21,11 @@
         }
         function create () {
           game.add.tileSprite(0,0,480,640,'background');
-          playerBet = createBet(game.world.centerX, 610);
-          computerBet = createBet(game.world.centerX, 20);
+          playerBet = createBet(game.world.centerX, 624);
+          computerBet = createBet(game.world.centerX, 16);
           ball = createBall(game.world.centerX, game.world.centerY);
           playerBetHalfWidth = playerBet.width / 2;
-          game.input.onDown.add(releaseBall, this);
+          game.input.onDown.add(setBall, this);
         }
         function update () {
           controlPlayerPaddle(game.input.x);
