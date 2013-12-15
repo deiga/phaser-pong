@@ -8,6 +8,9 @@
       <script type="text/javascript" src="/bower_components/phaser/phaser.js"></script>
       <script type="text/javascript">
         var game = new Phaser.Game(480,640, Phaser.AUTO, '', { preload: preload, create: create, update: update});
+        var playerBet, computerBet, ball;
+        var computerBetSpeed = 190;
+        var ballSpeed = 300;
         function preload () {
           game.load.image('bet', 'assets/paddle.png');
           game.load.image('ball', 'assets/ball.png');
@@ -15,9 +18,20 @@
         }
         function create () {
           game.add.tileSprite(0,0,480,640,'background');
+          playerBet = createBet(game.world.centerX, 610);
+          computerBet = createBet(game.world.centerX, 20);
         }
         function update () {
 
+        }
+        function createBet (x,y) {
+          var bet = game.add.sprite(x,y, 'bet');
+          bet.anchor.setTo(0.5,0.5);
+          bet.body.collideWorldBounds = true;
+          bet.body.bounce.setTo(1,1);
+          bet.body.immovable = true;
+
+          return bet;
         }
       </script>
   </head>
