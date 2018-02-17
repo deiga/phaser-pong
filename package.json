@@ -4,7 +4,7 @@
   "description": "pong game on phaser.js",
   "main": "index.js",
   "dependencies": {
-    "bower": "~1.2.8",
+    "bower": "~1.7.5",
     "express": "~3.4.7"
   },
   "scripts": {
